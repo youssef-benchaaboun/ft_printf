@@ -1,4 +1,4 @@
-#include"printf.h"
+#include"ft_printf.h"
 static int print_hex(unsigned int nb,char *base)
 {
         int re;
@@ -8,11 +8,11 @@ static int print_hex(unsigned int nb,char *base)
         re+=write(1,&base[nb%16],1);
         return re;
 }
-int print_xs(unsigned nb)
+int ft_print_xs(unsigned nb)
 {
 	return print_hex(nb , "0123456789abcdef");
 }
-int print_xc(unsigned nb)
+int ft_print_xc(unsigned nb)
 {
         return print_hex(nb , "0123456789ABCDEF");
 }

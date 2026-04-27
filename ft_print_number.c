@@ -1,4 +1,4 @@
-#include"printf.h"
+#include"ft_printf.h"
 int ft_print_number(int nb)
 {
 	long n;
