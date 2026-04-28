@@ -4,6 +4,8 @@
 #include<unistd.h>
 #include<stdarg.h>
 #include<stdio.h>
+int ft_strlen(char *s);
+int     ft_printf(const char *s, ...);
 int ft_print_char(char c);
 int ft_print_xs(unsigned nb);
 int ft_print_xc(unsigned nb);

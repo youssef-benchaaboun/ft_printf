@@ -1,5 +1,6 @@
-#include<unistd.h>
-int ft_print_char(char c)
+#include "ft_printf.h"
+
+int	ft_print_char(char c)
 {
-	return write(1,&c,1);
+	return (write(1, &c, 1));
 }
