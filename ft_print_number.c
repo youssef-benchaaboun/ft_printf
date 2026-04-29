@@ -19,3 +19,16 @@ int	ft_print_number(int nb)
 	re += write(1, &c, 1);
 	return (re);
 }
+
+int	ft_print_u(unsigned int n)
+{
+	int		re;
+	char	c;
+
+	re = 0;
+	if (n > 9)
+		re += ft_print_number(n / 10);
+	c = n % 10 + '0';
+	re += write(1, &c, 1);
+	return (re);
+}

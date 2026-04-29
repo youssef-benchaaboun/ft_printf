@@ -11,12 +11,12 @@ static int	print_hex(unsigned int nb, char *base)
 	return (re);
 }
 
-int ft_print_xs(unsigned nb) 
+int	ft_print_xs(unsigned int nb)
 {
 	return (print_hex(nb, "0123456789abcdef"));
 }
 
-int ft_print_xc(unsigned nb) 
+int	ft_print_xc(unsigned int nb)
 {
 	return (print_hex(nb, "0123456789ABCDEF"));
 }

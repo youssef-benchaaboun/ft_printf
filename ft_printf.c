@@ -1,25 +1,22 @@
 #include "ft_printf.h"
 
-int	ft_print(char c, va_list ar)
+int	ft_print(char c, va_list *ar)
 {
-	int	re;
-
-	re = 0;
-	if (c == 'd')
-		re = ft_print_number(va_arg(ar,int));
+	if (c == 'd' || c == 'i')
+		return (ft_print_number(va_arg(*ar, int)));
 	else if (c == 's')
-		re += ft_print_string(va_arg(ar, char *));
-	else if (c== 'p')
-		re += ft_print_pointer(va_arg(ar, void *));
+		return (ft_print_string(va_arg(*ar, char *)));
+	else if (c == 'p')
+		return (ft_print_pointer(va_arg(*ar, void *)));
 	else if (c == 'c')
-		re = ft_print_char(va_arg(ar, int));
+		return (ft_print_char(va_arg(*ar, int)));
 	else if (c == 'x')
-		re = ft_print_xs(va_arg(ar, int));
+		return (ft_print_xs(va_arg(*ar, int)));
 	else if (c == 'X')
-		re = ft_print_xc(va_arg(ar, int));
-	else if (c == 'i')
-		re = ft_print_number(va_arg(ar, int));
-	return (re);
+		return (ft_print_xc(va_arg(*ar, int)));
+	else if (c == 'u')
+		return (ft_print_u(va_arg(*ar, unsigned int)));
+	return (write(1, "%", 1));
 }
 
 static int	is_option(char c)
@@ -27,7 +24,7 @@ static int	is_option(char c)
 	char	*s;
 	int		i;
 
-	s = "dixXcsp%";
+	s = "udixXcsp%";
 	i = 0;
 	while (s[i])
 	{
@@ -44,6 +41,8 @@ int	ft_printf(const char *s, ...)
 	int		i;
 	int		re;
 
+	if (!s)
+		return (-1);
 	re = 0;
 	i = 0;
 	va_start(ar, s);
@@ -51,9 +50,7 @@ int	ft_printf(const char *s, ...)
 	{
 		if (s[i] == '%' && is_option(s[i + 1]))
 		{
-			if (s[i+1]== '%')
-				re = write(1, "%", 1);
-			re += ft_print(s[i + 1], ar);
+			re += ft_print(s[i + 1], &ar);
 			i += 2;
 		}
 		else
